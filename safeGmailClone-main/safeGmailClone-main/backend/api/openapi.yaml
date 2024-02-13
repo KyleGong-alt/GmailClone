@@ -1,0 +1,195 @@
+#
+# CSE186 Assignment 8 Backend
+#
+
+openapi: '3.0.3'
+
+info:
+  description: CSE186 Assignment 8 Backend
+  version: 0.1.0
+  title: CSE186 Assignment 8 Backend
+
+servers:
+  - url: http://localhost:3010/v0
+
+paths:
+  /dummy:
+    get:
+      description: Dummy Endpoint
+      responses:
+        200:
+          description: Succesful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DummyResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /Login:
+    post:
+      description: Login
+      requestBody:
+        description: Request Body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Credentials'
+      responses:
+        200:
+          description: Email Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        # 401:
+        #   description: Email Found
+        #     content:
+        #       application/json:
+        #         schema:
+        #           $ref: '#/components/schemas/User'
+        default:
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Finds the mailbox for that user
+  /user:
+    get:
+      # security:
+      #   - bearerAuth: []
+      parameters:
+        - in: query
+          name: sendto
+          schema:
+            type: string
+          required: false
+          description: username
+        - in: query
+          name: mailbox
+          schema:
+            type: string
+          required: false
+          description: mailbox
+        - in: query
+          name: id
+          schema:
+            type: string
+          required: false
+          description: id
+      description: Returns user if found
+      responses:
+        200:
+          description: Email is found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getUser'
+        404:
+          description: User is unknown
+        default:
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      description: Choose email and mailbox
+      requestBody:
+        description: Request Body
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+
+      # parameters:
+      #   - in: body
+      #     name: id
+      #     schema:
+      #       type: string
+      #     required: false
+      #     description: id
+      responses:
+        204:
+          description: Success
+        404:
+          description: Id not found
+        default:
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+
+    Credentials:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+        - username
+        - password
+
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        accessToken:
+          type: string
+      required:
+        - name
+        - accessToken
+
+    getUser:
+      type: array
+      properties:
+        sendto:
+          type: string
+        mailbox:
+          type: string
+        id:
+          type: string
+      required:
+        - sendto
+        - mailbox
+        - id
+
+    DummyResponse:
+      properties:
+        message:
+          type: string
+      required:
+        - message
+
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # optional, arbitrary value for documentation purposes
+
+# security:
+#   - bearerAuth: []
