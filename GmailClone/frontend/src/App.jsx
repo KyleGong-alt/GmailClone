@@ -1,4 +1,3 @@
-// import React from 'react';
 import {useState} from 'react';
 import {useEffect} from 'react';
 import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
@@ -6,10 +5,7 @@ import MailBoxView from './components/MailBoxViewer';
 import Login from './components/Login';
 import NotFound from './components/NotFound.jsx';
 import ViewEmail from './components/MailViewer.jsx';
-// import usePermanentDrawerLeft from './components/Drawer';
-// import clippedDrawer from './components/Mailbox';
 
-// credit: From secret sauce
 const AuthenticatedRoute = ({children}) => {
   if (localStorage.getItem('user')) {
     return children;

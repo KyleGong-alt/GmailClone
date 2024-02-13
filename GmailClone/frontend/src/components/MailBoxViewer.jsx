@@ -19,7 +19,6 @@ function MailBoxView({
   const navigate = useNavigate();
   const onLogout = () => {
     localStorage.removeItem('user');
-    // setError('Logged out');
     console.log('In onlogout button');
     navigate('/Login');
   };

@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS dummy;
 CREATE TABLE dummy(created TIMESTAMP WITH TIME ZONE);
 
 DROP TABLE IF EXISTS userinfo;
--- CREATE TABLE userinfo(id UUID UNIQUE PRIMARY KEY DEFAULT gen_random_uuid(), username VARCHAR(32), passwords VARCHAR(32));
 CREATE TABLE userinfo(id UUID UNIQUE PRIMARY KEY DEFAULT gen_random_uuid(),username VARCHAR(32), pass VARCHAR(64));
 
 DROP TABLE IF EXISTS mail;

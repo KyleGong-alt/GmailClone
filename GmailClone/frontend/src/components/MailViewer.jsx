@@ -1,12 +1,7 @@
-// import Login from './Login';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import IconButton from '@mui/material/IconButton';
-// import {useState} from 'react';
 import {useEffect} from 'react';
 import Avatar from '@mui/material/Avatar';
-// import List from '@mui/material/List';
-// import List from '@mui/material/List';
-
 import DeleteIcon from '@mui/icons-material/Delete';
 import MarkunreadMailboxIcon from '@mui/icons-material/MarkunreadMailbox';
 import DownloadIcon from '@mui/icons-material/Download';
@@ -26,9 +21,6 @@ function showTime(time) {
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth();
   const currentDay = currentDate.getDate();
-  //   const currentHour = currentDate.getHours();
-  //   const currentMinute = currentDate.getMinutes();
-
   const date = new Date(time);
   const year = date.getFullYear();
   const month = date.getMonth();

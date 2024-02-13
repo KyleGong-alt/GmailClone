@@ -1,11 +1,5 @@
 import * as React from 'react';
-
-// import Drawer from '@mui/material/Drawer';
-
 import IconButton from '@mui/material/IconButton';
-
-// import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-
 import Avatar from '@mui/material/Avatar';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import List from '@mui/material/List';
@@ -50,16 +44,10 @@ function showTime(time) {
     'Nov',
     'Dec',
   ];
-  //   console.log('currenthour', currentHour);
-  //   console.log('currentMinute', currentMinute);
-  //   console.log('minute', minute);
-  //   console.log('hour', hour);
 
   if (minute < 10) {
     minute = '0' + minute;
   }
-  //   console.log('minute', minute);
-  //   console.log(currentDay - 1);
   if (year === currentYear && month === currentMonth && day === currentDay) {
     if (hour <= 11) {
       return hour + ':' + minute + ' AM';
